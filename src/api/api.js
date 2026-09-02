@@ -2,7 +2,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URI || "http://localhost:8080
 
 
 const request = async (endpoint, options = {}) => {
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+  const response = await fetch(`${API_BASE_URI}${endpoint}`, {
     ...options,
     credentials: "include",
     headers: {

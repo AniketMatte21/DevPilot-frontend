@@ -339,7 +339,7 @@ function ChatPage() {
   // RENDER
   // =====================================================
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-background font-sans text-foreground">
+    <div className="flex h-screen w-full overflow-hidden bg-background font-serif text-foreground">
       {/* =================================================
           SIDEBAR (Gemini Style)
       ================================================= */}

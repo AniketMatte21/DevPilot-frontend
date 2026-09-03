@@ -44,15 +44,28 @@ const GithubLogin = () => {
     <div className="min-h-screen w-full bg-background">
 
       {/* ================= HEADER ================= */}
-      <header className="h-16 w-full border-b">
-        <div className="flex h-full items-center justify-between px-4 sm:px-6 lg:px-8">
+<header className="sticky top-0 z-50 border-b bg-background/70 backdrop-blur-xl">
+  <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
 
-          <DevPilotLogo />
+    {/* DevPilot Logo */}
+    <div className="flex items-center gap-2">
+      
+                    <div className="relative flex h-9 w-9 items-center justify-center rounded-xl border border-primary/20 bg-primary/10 text-primary shadow-sm">
+                      <Bot className="h-4.5 w-4.5" />
+        
+                      <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-primary ring-2 ring-background" />
+                    </div>
+        
 
-          <ModeToggle />
+      <span className="text-lg font-bold tracking-tight">
+        DevPilot
+      </span>
+    </div>
 
-        </div>
-      </header>
+    <ModeToggle />
+
+  </div>
+</header>
 
       {/* ================= LOGIN CONTENT ================= */}
       <main className="flex min-h-[calc(100vh-4rem)] w-full items-center justify-center px-4 py-8">

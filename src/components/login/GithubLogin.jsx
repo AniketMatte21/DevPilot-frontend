@@ -13,6 +13,7 @@ import { Separator } from "@/components/ui/separator";
 import DevPilotLogo from "../logo/DevPilotLogo";
 import { ModeToggle } from "../ui/ModeToggle";
 import { Loader2 } from "lucide-react";
+import { Bot } from "lucide-react";
 
 const GithubIcon = () => {
   return (

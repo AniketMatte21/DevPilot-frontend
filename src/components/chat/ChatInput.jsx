@@ -1,183 +1,183 @@
-import {
-  ArrowUp,
-  Square,
-} from "lucide-react";
+// import {
+//   ArrowUp,
+//   Square,
+// } from "lucide-react";
 
-import { useState } from "react";
+// import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-
-
-const ChatInput = ({
-  onSend,
-  onStop,
-  streaming,
-}) => {
-
-  const [value, setValue] =
-    useState("");
+// import { Button } from "@/components/ui/button";
+// import { Textarea } from "@/components/ui/textarea";
 
 
-  const submit = () => {
+// const ChatInput = ({
+//   onSend,
+//   onStop,
+//   streaming,
+// }) => {
 
-    if (
-      !value.trim() ||
-      streaming
-    ) {
-      return;
-    }
-
-    onSend(value);
-
-    setValue("");
-  };
+//   const [value, setValue] =
+//     useState("");
 
 
-  const handleKeyDown = (event) => {
+//   const submit = () => {
 
-    if (
-      event.key === "Enter" &&
-      !event.shiftKey
-    ) {
+//     if (
+//       !value.trim() ||
+//       streaming
+//     ) {
+//       return;
+//     }
 
-      event.preventDefault();
+//     onSend(value);
 
-      submit();
-    }
-  };
-
-
-  return (
-
-    <div
-      className="
-        shrink-0
-        border-t
-        bg-background
-        p-4
-      "
-    >
-
-      <div
-        className="
-          mx-auto
-          w-full
-          max-w-4xl
-        "
-      >
-
-        <div
-          className="
-            relative
-            rounded-2xl
-            border
-            bg-background
-            shadow-sm
-            focus-within:ring-1
-            focus-within:ring-ring
-          "
-        >
-
-          <Textarea
-            value={value}
-            onChange={(event) =>
-              setValue(
-                event.target.value
-              )
-            }
-            onKeyDown={
-              handleKeyDown
-            }
-            placeholder={
-              "Ask anything about your repository..."
-            }
-            disabled={streaming}
-            rows={1}
-            className="
-              min-h-[52px]
-              resize-none
-              border-0
-              bg-transparent
-              px-4
-              py-4
-              pr-14
-              shadow-none
-              focus-visible:ring-0
-            "
-          />
+//     setValue("");
+//   };
 
 
-          <div
-            className="
-              absolute
-              bottom-2
-              right-2
-            "
-          >
+//   const handleKeyDown = (event) => {
 
-            {streaming ? (
+//     if (
+//       event.key === "Enter" &&
+//       !event.shiftKey
+//     ) {
 
-              <Button
-                type="button"
-                size="icon"
-                variant="outline"
-                onClick={onStop}
-                className="rounded-xl"
-              >
+//       event.preventDefault();
 
-                <Square
-                  className="
-                    h-4
-                    w-4
-                    fill-current
-                  "
-                />
-
-              </Button>
-
-            ) : (
-
-              <Button
-                type="button"
-                size="icon"
-                onClick={submit}
-                disabled={
-                  !value.trim()
-                }
-                className="rounded-xl"
-              >
-
-                <ArrowUp
-                  className="h-4 w-4"
-                />
-
-              </Button>
-
-            )}
-
-          </div>
-
-        </div>
+//       submit();
+//     }
+//   };
 
 
-        <p
-          className="
-            mt-2
-            text-center
-            text-[11px]
-            text-muted-foreground
-          "
-        >
-          AI can make mistakes. Verify important
-          code before using it.
-        </p>
+//   return (
 
-      </div>
+//     <div
+//       className="
+//         shrink-0
+//         border-t
+//         bg-background
+//         p-4
+//       "
+//     >
 
-    </div>
-  );
-};
+//       <div
+//         className="
+//           mx-auto
+//           w-full
+//           max-w-4xl
+//         "
+//       >
+
+//         <div
+//           className="
+//             relative
+//             rounded-2xl
+//             border
+//             bg-background
+//             shadow-sm
+//             focus-within:ring-1
+//             focus-within:ring-ring
+//           "
+//         >
+
+//           <Textarea
+//             value={value}
+//             onChange={(event) =>
+//               setValue(
+//                 event.target.value
+//               )
+//             }
+//             onKeyDown={
+//               handleKeyDown
+//             }
+//             placeholder={
+//               "Ask anything about your repository..."
+//             }
+//             disabled={streaming}
+//             rows={1}
+//             className="
+//               min-h-[52px]
+//               resize-none
+//               border-0
+//               bg-transparent
+//               px-4
+//               py-4
+//               pr-14
+//               shadow-none
+//               focus-visible:ring-0
+//             "
+//           />
 
 
-export default ChatInput;
+//           <div
+//             className="
+//               absolute
+//               bottom-2
+//               right-2
+//             "
+//           >
+
+//             {streaming ? (
+
+//               <Button
+//                 type="button"
+//                 size="icon"
+//                 variant="outline"
+//                 onClick={onStop}
+//                 className="rounded-xl"
+//               >
+
+//                 <Square
+//                   className="
+//                     h-4
+//                     w-4
+//                     fill-current
+//                   "
+//                 />
+
+//               </Button>
+
+//             ) : (
+
+//               <Button
+//                 type="button"
+//                 size="icon"
+//                 onClick={submit}
+//                 disabled={
+//                   !value.trim()
+//                 }
+//                 className="rounded-xl"
+//               >
+
+//                 <ArrowUp
+//                   className="h-4 w-4"
+//                 />
+
+//               </Button>
+
+//             )}
+
+//           </div>
+
+//         </div>
+
+
+//         <p
+//           className="
+//             mt-2
+//             text-center
+//             text-[11px]
+//             text-muted-foreground
+//           "
+//         >
+//           AI can make mistakes. Verify important
+//           code before using it.
+//         </p>
+
+//       </div>
+
+//     </div>
+//   );
+// };
+
+
+// export default ChatInput;

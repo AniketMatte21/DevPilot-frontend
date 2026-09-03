@@ -539,7 +539,7 @@ function ChatPage() {
         onKeyDown={handleKeyDown}
         disabled={streaming}
         placeholder="Ask anything about your repository..."
-        className="max-h-[200px] min-h-[52px] w-full resize-none border-0 bg-transparent px-4 py-3.5 text-base shadow-none focus-visible:ring-0"
+        className="max-h-[200px] min-h-[52px] w-full resize-none border-0 px-4 py-3.5 text-base shadow-none focus-visible:ring-0"
         rows={1}
       />
       

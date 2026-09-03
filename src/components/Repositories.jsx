@@ -17,6 +17,7 @@ import {
   XCircle,
   MessageCircle,
   AlertCircle,
+  ChevronDown
 } from "lucide-react";
 
 import {
@@ -35,6 +36,14 @@ import {
 } from "@/components/ui/card";
 
 import { Badge } from "@/components/ui/badge";
+
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"; // Adjust this import path to match your project
 
 
 const Repositories = () => {
@@ -386,64 +395,41 @@ const handleChat = (repo) => {
 
                     {/* ================= VISIBILITY ================= */}
 
-                    <div
-                      className="
-                        flex
-                        flex-wrap
-                        items-center
-                        gap-2
-                      "
-                    >
-
-                      <Button
-                        size="sm"
-                        variant={
-                          filter === "all"
-                            ? "default"
-                            : "outline"
-                        }
-                        onClick={() =>
-                          setFilter("all")
-                        }
-                      >
-                        All
-                      </Button>
-
-
-                      <Button
-                        size="sm"
-                        variant={
-                          filter === "public"
-                            ? "default"
-                            : "outline"
-                        }
-                        onClick={() =>
-                          setFilter("public")
-                        }
-                        className="gap-1.5"
-                      >
-                        <Globe className="h-4 w-4" />
-                        Public
-                      </Button>
-
-
-                      <Button
-                        size="sm"
-                        variant={
-                          filter === "private"
-                            ? "default"
-                            : "outline"
-                        }
-                        onClick={() =>
-                          setFilter("private")
-                        }
-                        className="gap-1.5"
-                      >
-                        <Lock className="h-4 w-4" />
-                        Private
-                      </Button>
-
-                    </div>
+<div className="flex flex-wrap items-center gap-2">
+  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <Button size="sm" variant="outline" className="gap-2">
+        Visibility
+        <ChevronDown className="h-4 w-4 opacity-50" />
+      </Button>
+    </DropdownMenuTrigger>
+    
+    <DropdownMenuContent align="start">
+      <DropdownMenuItem
+        onClick={() => setFilter("all")}
+        className="flex items-center gap-2 cursor-pointer"
+      >
+        <span>All</span>
+      </DropdownMenuItem>
+      
+      <DropdownMenuItem
+        onClick={() => setFilter("public")}
+        className="flex items-center gap-2 cursor-pointer"
+      >
+        <Globe className="h-4 w-4" />
+        <span>Public</span>
+      </DropdownMenuItem>
+      
+      <DropdownMenuItem
+        onClick={() => setFilter("private")}
+        className="flex items-center gap-2 cursor-pointer"
+      >
+        <Lock className="h-4 w-4" />
+        <span>Private</span>
+      </DropdownMenuItem>
+    </DropdownMenuContent>
+  </DropdownMenu>
+</div>
 
 
                     {/* SEPARATOR */}
@@ -461,98 +447,57 @@ const handleChat = (repo) => {
 
                     {/* ================= STATUS ================= */}
 
-                    <div
-                      className="
-                        flex
-                        flex-wrap
-                        items-center
-                        gap-2
-                      "
-                    >
+                  <div className="flex flex-wrap items-center gap-2">
+  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <Button size="sm" variant="outline" className="gap-2">
+        Status
+        <ChevronDown className="h-4 w-4 opacity-50" />
+      </Button>
+    </DropdownMenuTrigger>
+    
+    <DropdownMenuContent align="start">
+      <DropdownMenuItem
+        onClick={() => setStatusFilter("all")}
+        className="flex items-center gap-2 cursor-pointer"
+      >
+        <span>All</span>
+      </DropdownMenuItem>
+      
+      <DropdownMenuItem
+        onClick={() => setStatusFilter("READY")}
+        className="flex items-center gap-2 cursor-pointer"
+      >
+        <CheckCircle2 className="h-4 w-4" />
+        <span>Ready</span>
+      </DropdownMenuItem>
+      
+      <DropdownMenuItem
+        onClick={() => setStatusFilter("INDEXING")}
+        className="flex items-center gap-2 cursor-pointer"
+      >
+        <Loader2 className="h-4 w-4" />
+        <span>Indexing</span>
+      </DropdownMenuItem>
 
-                      <Button
-                        size="sm"
-                        variant={
-                          statusFilter === "all"
-                            ? "default"
-                            : "outline"
-                        }
-                        onClick={() =>
-                          setStatusFilter("all")
-                        }
-                      >
-                        All
-                      </Button>
+      <DropdownMenuItem
+        onClick={() => setStatusFilter("PENDING")}
+        className="flex items-center gap-2 cursor-pointer"
+      >
+        <Clock3 className="h-4 w-4" />
+        <span>New</span>
+      </DropdownMenuItem>
 
-
-                      <Button
-                        size="sm"
-                        variant={
-                          statusFilter === "READY"
-                            ? "default"
-                            : "outline"
-                        }
-                        onClick={() =>
-                          setStatusFilter("READY")
-                        }
-                        className="gap-1.5"
-                      >
-                        <CheckCircle2 className="h-4 w-4" />
-                        Ready
-                      </Button>
-
-
-                      <Button
-                        size="sm"
-                        variant={
-                          statusFilter === "INDEXING"
-                            ? "default"
-                            : "outline"
-                        }
-                        onClick={() =>
-                          setStatusFilter("INDEXING")
-                        }
-                        className="gap-1.5"
-                      >
-                        <Loader2 className="h-4 w-4" />
-                        Indexing
-                      </Button>
-
-
-                      <Button
-                        size="sm"
-                        variant={
-                          statusFilter === "PENDING"
-                            ? "default"
-                            : "outline"
-                        }
-                        onClick={() =>
-                          setStatusFilter("PENDING")
-                        }
-                        className="gap-1.5"
-                      >
-                        <Clock3 className="h-4 w-4" />
-                        New
-                      </Button>
-
-
-                      <Button
-                        size="sm"
-                        variant={
-                          statusFilter === "FAILED"
-                            ? "default"
-                            : "outline"
-                        }
-                        onClick={() =>
-                          setStatusFilter("FAILED")
-                        }
-                        className="gap-1.5"
-                      >
-                        <XCircle className="h-4 w-4" />
-                        Failed
-                      </Button>
-
-                    </div>
+      <DropdownMenuItem
+        onClick={() => setStatusFilter("FAILED")}
+        className="flex items-center gap-2 cursor-pointer"
+      >
+        <XCircle className="h-4 w-4" />
+        <span>Failed</span>
+      </DropdownMenuItem>
+    </DropdownMenuContent>
+  </DropdownMenu>
+</div>
 
                   </div>
                 )}

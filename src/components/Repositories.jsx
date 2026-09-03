@@ -976,19 +976,7 @@ const handleChat = (repo) => {
         {/* Left Side: Primary Actions */}
         <div className="flex flex-1 flex-wrap items-center gap-2">
           
-          {/* PENDING or FAILED (Purple Button) */}
-          {(repo.indexStatus === "PENDING" || !repo.indexStatus || repo.indexStatus === "FAILED") && (
-            <Button
-              type="button"
-              size="sm"
-              className="w-full sm:w-auto gap-2"
-              repo={repo}
-              onError={setIndexError}
-            >
-              Start Indexing
-              <ArrowRight className="h-4 w-4 shrink-0" />
-            </Button>
-          )}
+
 {(repo.indexStatus === "PENDING" || !repo.indexStatus || repo.indexStatus === "FAILED") && (
   <IndexButton
     repo={repo}

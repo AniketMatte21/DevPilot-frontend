@@ -982,7 +982,7 @@ const handleChat = (repo) => {
               type="button"
               size="sm"
               className="w-full sm:w-auto gap-2"
-              /* onClick={() => startIndexingLogicHere(repo)} */
+              onClick={() => startIndexingLogicHere(repo)}
             >
               Start Indexing
               <ArrowRight className="h-4 w-4 shrink-0" />

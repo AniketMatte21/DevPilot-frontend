@@ -981,7 +981,7 @@ const handleChat = (repo) => {
             <Button
               type="button"
               size="sm"
-              className="bg-pink-500 text-white shadow-md shadow-blue-600/20 transition-colors hover:bg-blue-300 w-full sm:w-auto gap-2"
+              className="w-full sm:w-auto gap-2"
               /* onClick={() => startIndexingLogicHere(repo)} */
             >
               Start Indexing
@@ -1008,7 +1008,7 @@ const handleChat = (repo) => {
               <Button
                 type="button"
                 size="sm"
-                className="bg-yellow-300 text-white shadow-md shadow-amber-500/20 transition-colors hover:bg-amber-400 w-full sm:w-auto gap-2"
+                className=" w-full sm:w-auto gap-2"
                 onClick={() => handleChat(repo)}
               >
                 <MessageCircle className="h-4 w-4 shrink-0" />

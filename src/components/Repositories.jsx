@@ -888,9 +888,43 @@ const handleChat = (repo) => {
           <div className="flex min-w-0 items-center gap-4">
             
             {/* Styled Icon Container */}
-<div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-black text-white dark:bg-white dark:text-black">
-  <GitBranch className="h-6 w-6" />
-</div>
+<div
+
+                              className="
+
+                                flex
+
+                                h-10
+
+                                w-10
+
+                                shrink-0
+
+                                items-center
+
+                                justify-center
+
+                                rounded-lg
+
+                                bg-muted
+
+                              "
+
+                            >
+
+
+
+                              <GitBranch
+
+                                className="h-5 w-5"
+
+                              />
+
+
+
+                            </div>
+
+
             <div className="min-w-0">
               <CardTitle className="truncate text-sm font-semibold text-foreground">
                 {repo.name}
@@ -947,7 +981,7 @@ const handleChat = (repo) => {
             <Button
               type="button"
               size="sm"
-              className="bg-blue-600 text-white shadow-md shadow-blue-600/20 transition-colors hover:bg-blue-300 w-full sm:w-auto gap-2"
+              className="bg-pink-500 text-white shadow-md shadow-blue-600/20 transition-colors hover:bg-blue-300 w-full sm:w-auto gap-2"
               /* onClick={() => startIndexingLogicHere(repo)} */
             >
               Start Indexing
@@ -974,7 +1008,7 @@ const handleChat = (repo) => {
               <Button
                 type="button"
                 size="sm"
-                className="bg-amber-300 text-white shadow-md shadow-amber-500/20 transition-colors hover:bg-amber-400 w-full sm:w-auto gap-2"
+                className="bg-yellow-300 text-white shadow-md shadow-amber-500/20 transition-colors hover:bg-amber-400 w-full sm:w-auto gap-2"
                 onClick={() => handleChat(repo)}
               >
                 <MessageCircle className="h-4 w-4 shrink-0" />

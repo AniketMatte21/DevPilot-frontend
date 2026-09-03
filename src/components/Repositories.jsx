@@ -875,368 +875,147 @@ const handleChat = (repo) => {
             !isError &&
             filteredRepositories.length > 0 && (
 
-              <div
-                className="
-                  grid
-                  gap-5
-                  md:grid-cols-2
-                  xl:grid-cols-3
-                "
+<div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3 mt-6">
+  {filteredRepositories.map((repo) => (
+    <Card
+      key={repo.id}
+      className="group relative flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 border bg-card"
+    >
+      {/* ================= CARD HEADER ================= */}
+      <CardHeader className="pb-4">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex min-w-0 items-center gap-4">
+            
+            {/* Styled Icon Container */}
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-purple-100 to-blue-100 text-purple-600 dark:from-purple-900/20 dark:to-blue-900/20 dark:text-purple-400">
+              <GitBranch className="h-6 w-6" />
+            </div>
+
+            <div className="min-w-0">
+              <CardTitle className="truncate text-base font-semibold text-foreground">
+                {repo.name}
+              </CardTitle>
+              <p className="truncate text-sm text-muted-foreground">
+                {repo.owner}
+              </p>
+            </div>
+          </div>
+
+          {/* Visibility Icon */}
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-muted/50">
+            {repo.isPrivate ? (
+              <Lock className="h-4 w-4 text-muted-foreground" />
+            ) : (
+              <Globe className="h-4 w-4 text-muted-foreground" />
+            )}
+          </div>
+        </div>
+      </CardHeader>
+
+      {/* ================= CARD CONTENT ================= */}
+      <CardContent className="flex flex-1 flex-col pb-4">
+        {/* Full Name & Description */}
+        <p className="mb-1 truncate text-xs text-muted-foreground/80">
+          {repo.fullName}
+        </p>
+        <p className="mb-6 line-clamp-2 min-h-[2.5rem] text-sm text-foreground/80">
+          {repo.description || "No description available for this repository."}
+        </p>
+
+        {/* Badges */}
+        <div className="mt-auto flex flex-wrap items-center gap-2">
+          {repo.language && (
+            <Badge variant="secondary" className="bg-secondary/50 font-medium">
+              {repo.language}
+            </Badge>
+          )}
+          <Badge variant="outline" className="border-muted-foreground/20 text-muted-foreground">
+            {repo.isPrivate ? "Private" : "Public"}
+          </Badge>
+          {getStatusBadge(repo.indexStatus)}
+        </div>
+      </CardContent>
+
+      {/* ================= CARD FOOTER (ACTIONS) ================= */}
+      <div className="flex flex-wrap items-center justify-between gap-3 border-t bg-muted/10 p-4">
+        
+        {/* Left Side: Primary Actions */}
+        <div className="flex flex-1 flex-wrap items-center gap-2">
+          
+          {/* PENDING or FAILED (Purple Button) */}
+          {(repo.indexStatus === "PENDING" || !repo.indexStatus || repo.indexStatus === "FAILED") && (
+            <Button
+              type="button"
+              size="sm"
+              className="bg-purple-600 text-white shadow-md shadow-purple-600/20 transition-colors hover:bg-purple-700 w-full sm:w-auto gap-2"
+              /* onClick={() => startIndexingLogicHere(repo)} */
+            >
+              Start Indexing
+              <ArrowRight className="h-4 w-4 shrink-0" />
+            </Button>
+          )}
+
+          {/* INDEXING */}
+          {repo.indexStatus === "INDEXING" && (
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="w-full sm:w-auto gap-2"
+              onClick={() => handleOpen(repo)}
+            >
+              Open
+            </Button>
+          )}
+
+          {/* READY (Dark Yellow Chat Button) */}
+          {repo.indexStatus === "READY" && (
+            <>
+              <Button
+                type="button"
+                size="sm"
+                className="bg-amber-500 text-white shadow-md shadow-amber-500/20 transition-colors hover:bg-amber-600 w-full sm:w-auto gap-2"
+                onClick={() => handleChat(repo)}
               >
-
-                {filteredRepositories.map(
-                  (repo) => (
-
-                    <Card
-                      key={repo.id}
-                      className="
-                        group
-                        transition-shadow
-                        hover:shadow-md
-                      "
-                    >
-
-
-                      {/* ================= CARD HEADER ================= */}
-
-                      <CardHeader className="pb-3">
-
-                        <div
-                          className="
-                            flex
-                            items-start
-                            justify-between
-                            gap-3
-                          "
-                        >
-
-                          <div
-                            className="
-                              flex
-                              min-w-0
-                              items-center
-                              gap-3
-                            "
-                          >
-
-                            <div
-                              className="
-                                flex
-                                h-10
-                                w-10
-                                shrink-0
-                                items-center
-                                justify-center
-                                rounded-lg
-                                bg-muted
-                              "
-                            >
-
-                              <GitBranch
-                                className="h-5 w-5"
-                              />
-
-                            </div>
-
-
-                            <div className="min-w-0">
-
-                              <CardTitle
-                                className="
-                                  mt-1
-                                  truncate
-                                  text-xs
-                                  text-muted-foreground
-                                "
-                              >
-                                {repo.name}
-                              </CardTitle>
-
-
-                              <p
-                                className="
-                                  truncate
-                                  text-sm
-                                "
-                              >
-                                {repo.owner}
-                              </p>
-
-                            </div>
-
-                          </div>
-
-
-                          {/* VISIBILITY ICON */}
-
-                          {repo.isPrivate ? (
-
-                            <Lock
-                              className="
-                                h-4
-                                w-4
-                                shrink-0
-                                text-muted-foreground
-                              "
-                            />
-
-                          ) : (
-
-                            <Globe
-                              className="
-                                h-4
-                                w-4
-                                shrink-0
-                                text-muted-foreground
-                              "
-                            />
-
-                          )}
-
-                        </div>
-
-                      </CardHeader>
-
-
-                      {/* ================= CARD CONTENT ================= */}
-
-                      <CardContent
-                        className="space-y-4"
-                      >
-
-                        {/* Full Name */}
-
-                        <p
-                          className="
-                            truncate
-                            text-sm
-                            text-muted-foreground
-                          "
-                        >
-                          {repo.fullName}
-                        </p>
-
-
-                        {/* Description */}
-
-                        <p
-                          className="
-                            line-clamp-2
-                            min-h-10
-                            text-xs
-                          "
-                        >
-                          {repo.description ||
-                            "No description available."}
-                        </p>
-
-
-                        {/* ================= DETAILS ================= */}
-
-                        <div
-                          className="
-                            flex
-                            flex-wrap
-                            items-center
-                            gap-2
-                          "
-                        >
-
-                          {repo.language && (
-
-                            <Badge variant="secondary">
-                              {repo.language}
-                            </Badge>
-
-                          )}
-
-
-                          <Badge variant="outline">
-
-                            {repo.isPrivate
-                              ? "Private"
-                              : "Public"}
-
-                          </Badge>
-
-
-                          {getStatusBadge(
-                            repo.indexStatus
-                          )}
-
-                        </div>
-
-
-                        {/* ================================================= */}
-                        {/* ACTIONS */}
-                        {/* ================================================= */}
-
-                        <div
-                          className="
-                            flex
-                            flex-wrap
-                            items-center
-                            gap-2
-                          "
-                        >
-
-
-                          {/* ================= PENDING ================= */}
-
-                          {(
-                            repo.indexStatus === "PENDING" ||
-                            !repo.indexStatus
-                          ) && (
-
-                            <IndexButton
-                              repo={repo}
-                              onError={setIndexError}
-                            />
-
-                          )}
-
-
-                          {/* ================= FAILED ================= */}
-
-                          {repo.indexStatus === "FAILED" && (
-
-                            <IndexButton
-                              repo={repo}
-                              onError={setIndexError}
-                            />
-
-                          )}
-
-
-                          {/* ================= INDEXING ================= */}
-
-                          {repo.indexStatus === "INDEXING" && (
-
-                            <Button
-                              type="button"
-                              variant="outline"
-                              size="sm"
-                              onClick={() =>
-                                handleOpen(repo)
-                              }
-                            >
-                              Open
-                            </Button>
-
-                          )}
-
-
-                          {/* ================= READY ================= */}
-
-                          {repo.indexStatus === "READY" && (
-
-                            <>
-
-                              <Button
-                                type="button"
-                                size="sm"
-                                className="gap-1.5"
-                                onClick={() =>
-                                  handleChat(repo)
-                                }
-                              >
-
-                                <MessageCircle
-                                  className="h-4 w-4"
-                                />
-
-                                Chat
-
-                              </Button>
-
-
-                              <Button
-                                type="button"
-                                size="sm"
-                                variant="outline"
-                                className="gap-1.5"
-                                onClick={() =>
-                                  handleOpen(repo)
-                                }
-                              >
-
-                                <ExternalLink
-                                  className="h-4 w-4"
-                                />
-
-                                Open
-
-                              </Button>
-
-                            </>
-
-                          )}
-
-                        </div>
-
-
-                        {/* ================= BOTTOM ================= */}
-
-                        <div
-                          className="
-                            flex
-                            items-center
-                            justify-between
-                            border-t
-                            pt-4
-                          "
-                        >
-
-                          {/* GitHub Link */}
-
-                          {repo.htmlUrl && (
-
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              asChild
-                              className="gap-1"
-                            >
-
-                              <a
-                                href={repo.htmlUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="
-                                  inline-flex
-                                  items-center
-                                  gap-1
-                                "
-                              >
-
-                                <span>
-                                  GitHub
-                                </span>
-
-                                <ExternalLink
-                                  className="
-                                    h-3.5
-                                    w-3.5
-                                    shrink-0
-                                  "
-                                />
-
-                              </a>
-
-                            </Button>
-
-                          )}
-
-                        </div>
-
-                      </CardContent>
-
-                    </Card>
-
-                  )
-                )}
-
-              </div>
+                <MessageCircle className="h-4 w-4 shrink-0" />
+                Chat
+              </Button>
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                className="w-full sm:w-auto gap-2"
+                onClick={() => handleOpen(repo)}
+              >
+                <ExternalLink className="h-4 w-4 shrink-0" />
+                Open
+              </Button>
+            </>
+          )}
+        </div>
+
+        {/* Right Side: GitHub Link */}
+        {repo.htmlUrl && (
+          <Button
+            variant="ghost"
+            size="sm"
+            asChild
+            className="gap-1.5 text-muted-foreground hover:text-foreground shrink-0"
+          >
+            <a
+              href={repo.htmlUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="hidden sm:inline">GitHub</span>
+              <ExternalLink className="h-4 w-4 shrink-0" />
+            </a>
+          </Button>
+        )}
+      </div>
+    </Card>
+  ))}
+</div>
 
             )}
 

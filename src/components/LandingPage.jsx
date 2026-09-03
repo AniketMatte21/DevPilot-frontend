@@ -117,38 +117,41 @@ const LandingPage = () => {
               <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
 
                 {/* Main button */}
-                <Button
-                  size="lg"
-                  asChild
-                  className="flex items-center justify-center gap-2 h-12 w-full rounded-full px-7 text-base shadow-lg shadow-primary/20 sm:w-auto"
-                >
-                  <Link to={isLoggedIn ? "/dashboard" : "/login"}>
-                    {isLoggedIn ? "Go to Dashboard" : "Get Started"}
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Button>
+<Button
+  size="lg"
+  asChild
+  className="h-12 w-full rounded-lg px-7 text-base shadow-lg shadow-primary/20 sm:w-auto"
+>
+  <Link
+    to={isLoggedIn ? "/dashboard" : "/login"}
+    className="flex w-full items-center justify-center gap-2"
+  >
+    <span>{isLoggedIn ? "Go to Dashboard" : "Get Started"}</span>
+    <ArrowRight className="h-4 w-4 shrink-0" />
+  </Link>
+</Button>
 
 
                 {/* GitHub button only for logged-out users */}
                 {!isLoading && !isLoggedIn && (
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    asChild
-                    className="flex items-center justify-center gap-2 h-12 w-full rounded-full px-7 text-base backdrop-blur sm:w-auto hover:bg-slate-100 transition-colors"
-                  >
-                    <Link to="/login">
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        className="h-5 w-5"
-                        aria-hidden="true"
-                      >
-                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.725-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.998.108-.775.418-1.305.762-1.605-2.665-.303-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.235-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23A11.5 11.5 0 0 1 12 5.805c1.02.005 2.045.138 3.003.404 2.29-1.552 3.296-1.23 3.296-1.23.653 1.653.242 2.873.118 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.805 5.625-5.475 5.922.43.372.823 1.103.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .322.216.696.825.577C20.565 21.796 24 17.297 24 12 24 5.37 18.63 0 12 0Z" />
-                      </svg>
-                      Continue with GitHub
-                    </Link>
-                  </Button>
+<Button
+  size="lg"
+  variant="outline"
+  asChild
+  className="h-12 w-full rounded-lg px-7 text-base backdrop-blur sm:w-auto hover:bg-slate-100 transition-colors"
+>
+  <Link to="/login" className="flex w-full items-center justify-center gap-2">
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="h-5 w-5 shrink-0"
+      aria-hidden="true"
+    >
+      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.725-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.998.108-.775.418-1.305.762-1.605-2.665-.303-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.235-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23A11.5 11.5 0 0 1 12 5.805c1.02.005 2.045.138 3.003.404 2.29-1.552 3.296-1.23 3.296-1.23.653 1.653.242 2.873.118 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.805 5.625-5.475 5.922.43.372.823 1.103.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .322.216.696.825.577C20.565 21.796 24 17.297 24 12 24 5.37 18.63 0 12 0Z" />
+    </svg>
+    <span>Continue with GitHub</span>
+  </Link>
+</Button>
                 )}
 
               </div>
@@ -306,17 +309,19 @@ const LandingPage = () => {
               Start understanding your code with DevPilot.
             </p>
 
-            <Button
-              size="lg"
-              asChild
-              className="mt-8 h-12 rounded-lg px-8 shadow-lg shadow-primary/20"
-            >
-              <Link to={isLoggedIn ? "/dashboard" : "/login"}>
-                {isLoggedIn ? "Go to Dashboard" : "Get Started"}
-
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+<Button
+  size="lg"
+  asChild
+  className="mt-8 h-12 rounded-lg px-8 shadow-lg shadow-primary/20"
+>
+  <Link
+    to={isLoggedIn ? "/dashboard" : "/login"}
+    className="flex w-full items-center justify-center gap-2"
+  >
+    <span>{isLoggedIn ? "Go to Dashboard" : "Get Started"}</span>
+    <ArrowRight className="h-4 w-4 shrink-0" />
+  </Link>
+</Button>
 
           </div>
 

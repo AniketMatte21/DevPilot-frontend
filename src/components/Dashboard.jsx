@@ -17,7 +17,8 @@ import {
   Settings,
   Code2,
   LogOut,
-  Bot
+  Bot,
+  Home
 } from "lucide-react";
 
 import {
@@ -598,17 +599,13 @@ const Dashboard = () => {
                       "
                     >
 
-                      <DropdownMenuItem
-                        onClick={() =>
-                          navigate("/")
-                        }
-                        className="
-                          cursor-pointer
-                        "
-                      >
-                        Go to Home
-                      </DropdownMenuItem>
-
+<DropdownMenuItem
+  onClick={() => navigate("/")}
+  className="flex items-center gap-2 cursor-pointer"
+>
+  <Home className="h-4 w-4" />
+  <span>Home</span>
+</DropdownMenuItem>
 
                       <DropdownMenuSeparator />
 

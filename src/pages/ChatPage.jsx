@@ -450,7 +450,14 @@ function ChatPage() {
               {selectedSession?.title || "Repository Chat"}
             </h2>
           </div>
-          <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-primary to-purple-500" />
+              <div className="flex items-center gap-2">
+      
+                    <div className="relative flex h-9 w-9 items-center justify-center rounded-xl border border-primary/20 bg-primary/10 text-primary shadow-sm">
+                      <Bot className="h-4.5 w-4.5" />
+        
+                      <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-primary ring-2 ring-background" />
+                    </div>
+    </div>
         </header>
 
         {/* Error Alert */}
@@ -518,47 +525,55 @@ function ChatPage() {
         {/* =================================================
             FLOATING INPUT BAR (Gemini Style)
         ================================================= */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background to-transparent pt-6 pb-6 px-4 md:left-[280px]">
-          <div className="mx-auto w-full max-w-4xl">
-            <div className="relative flex w-full items-end gap-2 rounded-[28px] bg-[#f0f4f9] p-2 pr-12 dark:bg-[#1e1f20]">
-              <Textarea
-                ref={textareaRef}
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown}
-                disabled={streaming}
-                placeholder="Ask anything about your repository..."
-                className="max-h-[200px] min-h-[52px] w-full resize-none border-0 bg-transparent px-4 py-4 text-base shadow-none focus-visible:ring-0"
-                rows={1}
-              />
-              <div className="absolute bottom-3 right-3 flex items-center gap-2">
-                {streaming ? (
-                  <Button
-                    type="button"
-                    size="icon"
-                    onClick={handleStop}
-                    className="h-10 w-10 rounded-full bg-background text-foreground shadow-sm hover:bg-muted"
-                  >
-                    <Square className="h-4 w-4 fill-current" />
-                  </Button>
-                ) : (
-                  <Button
-                    type="button"
-                    size="icon"
-                    disabled={!input.trim() || !id}
-                    onClick={handleSendMessage}
-                    className="h-10 w-10 rounded-full bg-background text-primary shadow-sm hover:bg-muted disabled:opacity-50"
-                  >
-                    <Send className="h-4 w-4" />
-                  </Button>
-                )}
-              </div>
-            </div>
-            <p className="mt-3 text-center text-xs text-muted-foreground">
-              AI can make mistakes. Verify important code before using it.
-            </p>
-          </div>
-        </div>
+<div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background via-background/90 to-transparent pt-6 pb-6 px-4 md:left-[280px]">
+  <div className="mx-auto w-full max-w-4xl">
+    
+    {/* UPDATED: Removed flat background, added border, shadow, and focus glow */}
+    <div className="relative flex w-full items-end gap-2 rounded-[28px] border border-border/80 bg-background p-2 pr-12 shadow-sm transition-all focus-within:border-primary/50 focus-within:ring-1 focus-within:ring-primary/50">
+      
+      <Textarea
+        ref={textareaRef}
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        onKeyDown={handleKeyDown}
+        disabled={streaming}
+        placeholder="Ask anything about your repository..."
+        className="max-h-[200px] min-h-[52px] w-full resize-none border-0 bg-transparent px-4 py-3.5 text-base shadow-none focus-visible:ring-0"
+        rows={1}
+      />
+      
+      <div className="absolute bottom-2.5 right-2.5 flex items-center gap-2">
+        {streaming ? (
+          <Button
+            type="button"
+            size="icon"
+            onClick={handleStop}
+            className="h-9 w-9 rounded-full border border-border/50 bg-muted/50 text-foreground shadow-sm hover:bg-muted"
+          >
+            <Square className="h-4 w-4 fill-current" />
+          </Button>
+        ) : (
+          <Button
+            type="button"
+            size="icon"
+            disabled={!input.trim() || !id}
+            onClick={handleSendMessage}
+            className="h-9 w-9 rounded-full bg-primary text-primary-foreground shadow-sm transition-transform hover:scale-105 hover:bg-primary/90 disabled:scale-100 disabled:opacity-50"
+          >
+            <Send className="h-4 w-4 ml-0.5" />
+          </Button>
+        )}
+      </div>
+      
+    </div>
+
+    {/* ADDED font-sans so the disclaimer doesn't use Merriweather if you set it globally */}
+    <p className="mt-3 text-center font-sans text-xs text-muted-foreground">
+      AI can make mistakes. Verify important code before using it.
+    </p>
+    
+  </div>
+</div>
       </section>
     </div>
   );

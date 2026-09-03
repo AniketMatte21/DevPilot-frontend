@@ -17,7 +17,8 @@ import {
   XCircle,
   MessageCircle,
   AlertCircle,
-  ChevronDown
+  ChevronDown,
+  ArrowRight,
 } from "lucide-react";
 
 import {

@@ -530,43 +530,105 @@ function ChatPage() {
   <div className="mx-auto w-full max-w-4xl">
     
     {/* UPDATED: Removed flat background, added border, shadow, and focus glow */}
-    <div className="relative flex w-full items-end gap-2 rounded-[28px] border border-border/80 bg-background p-2 pr-12 shadow-sm transition-all focus-within:border-primary/50 focus-within:ring-1 focus-within:ring-primary/50">
-      
-      <Textarea
-        ref={textareaRef}
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={handleKeyDown}
-        disabled={streaming}
-        placeholder="Ask anything about your repository..."
-        className="max-h-[200px] min-h-[52px] w-full resize-none border-0 px-4 py-3.5 text-base shadow-none focus-visible:ring-0"
-        rows={1}
-      />
-      
-      <div className="absolute bottom-2.5 right-2.5 flex items-center gap-2">
-        {streaming ? (
-          <Button
-            type="button"
-            size="icon"
-            onClick={handleStop}
-            className="h-9 w-9 rounded-full border border-border/50 bg-muted/50 text-foreground shadow-sm hover:bg-muted"
-          >
-            <Square className="h-4 w-4 fill-current" />
-          </Button>
-        ) : (
-          <Button
-            type="button"
-            size="icon"
-            disabled={!input.trim() || !id}
-            onClick={handleSendMessage}
-            className="h-9 w-9 rounded-full bg-primary text-primary-foreground shadow-sm transition-transform hover:scale-105 hover:bg-primary/90 disabled:scale-100 disabled:opacity-50"
-          >
-            <Send className="h-4 w-4 ml-0.5" />
-          </Button>
-        )}
-      </div>
-      
+ <div className="sticky bottom-0 w-full px-3 pb-3 pt-2 sm:px-4 sm:pb-4">
+  <div
+    className="
+      relative mx-auto flex w-full max-w-4xl items-end
+      rounded-2xl border border-border/70
+      bg-background/95
+      p-2
+      shadow-lg shadow-black/5
+      backdrop-blur-md
+      transition-all duration-200
+      focus-within:border-primary/40
+      focus-within:shadow-md
+      focus-within:ring-2
+      focus-within:ring-primary/10
+    "
+  >
+    <Textarea
+      ref={textareaRef}
+      value={input}
+      onChange={(e) => setInput(e.target.value)}
+      onKeyDown={handleKeyDown}
+      disabled={streaming}
+      placeholder="Ask anything about your repository..."
+      rows={1}
+      className="
+        min-h-[48px]
+        max-h-[180px]
+        w-full
+        resize-none
+        border-0
+        bg-transparent
+        px-3
+        py-3
+        pr-12
+        text-sm
+        leading-6
+        shadow-none
+        placeholder:text-muted-foreground/70
+        focus-visible:ring-0
+        focus-visible:ring-offset-0
+        sm:px-4
+        sm:py-3.5
+        sm:text-[15px]
+      "
+    />
+
+    <div className="absolute bottom-2.5 right-2.5">
+      {streaming ? (
+        <Button
+          type="button"
+          size="icon"
+          onClick={handleStop}
+          aria-label="Stop generating"
+          className="
+            h-9 w-9
+            rounded-xl
+            border border-border/60
+            bg-muted
+            text-foreground
+            shadow-sm
+            transition-all
+            hover:bg-muted/80
+            active:scale-95
+          "
+        >
+          <Square className="h-3.5 w-3.5 fill-current" />
+        </Button>
+      ) : (
+        <Button
+          type="button"
+          size="icon"
+          disabled={!input.trim() || !id}
+          onClick={handleSendMessage}
+          aria-label="Send message"
+          className="
+            h-9 w-9
+            rounded-xl
+            bg-primary
+            text-primary-foreground
+            shadow-sm
+            transition-all duration-150
+            hover:scale-105
+            hover:bg-primary/90
+            active:scale-95
+            disabled:pointer-events-none
+            disabled:scale-100
+            disabled:opacity-40
+          "
+        >
+          <Send className="ml-0.5 h-4 w-4" />
+        </Button>
+      )}
     </div>
+  </div>
+
+  <p className="mt-2 hidden text-center text-[11px] text-muted-foreground/60 sm:block">
+    Enter to send · Shift + Enter for new line
+  </p>
+</div>
 
     {/* ADDED font-sans so the disclaimer doesn't use Merriweather if you set it globally */}
     <p className="mt-3 text-center font-sans text-xs text-muted-foreground">

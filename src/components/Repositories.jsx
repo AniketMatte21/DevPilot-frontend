@@ -989,7 +989,16 @@ const handleChat = (repo) => {
               <ArrowRight className="h-4 w-4 shrink-0" />
             </Button>
           )}
-
+{(repo.indexStatus === "PENDING" || !repo.indexStatus || repo.indexStatus === "FAILED") && (
+  <IndexButton
+    repo={repo}
+    onError={setIndexError}
+    className="bg-purple-600 text-white shadow-md shadow-purple-600/20 hover:bg-purple-700 w-full sm:w-auto gap-2"
+  >
+    Start Indexing
+    <ArrowRight className="h-4 w-4 shrink-0" />
+  </IndexButton>
+)}
           {/* INDEXING */}
           {repo.indexStatus === "INDEXING" && (
             <Button
